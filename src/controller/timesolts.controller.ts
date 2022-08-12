@@ -1,0 +1,16 @@
+import { Request, Response } from "express";
+import { SearchTermInput } from "../schema/address.schema";
+import { createAddress } from "../service/address.service";
+
+export const createTimeslotHandler = async (
+    req: Request<{}, {}, SearchTermInput["body"]>,
+    res: Response
+) => {
+    try {
+        const body = req.body;
+        const timeslot = await createTimeslot({ ...body });
+        return res.send(address);
+    } catch (error: any) {
+        res.status(500).send({ err: error.message })
+    }
+};
