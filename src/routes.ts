@@ -22,7 +22,6 @@ const routes = (app: Express) => {
     app.get('/deliveries/daily', dailyDeliveryHandler);
 
     app.get('/deliveries/weekly', weeklyDeliveryHandler);
-
 }
 
 export default routes

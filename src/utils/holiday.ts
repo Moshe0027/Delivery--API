@@ -6,11 +6,12 @@ const holiday = async () => {
   try {
     const apiKey = config.get<string>('holiday.key')
     const country = config.get<string>('holiday.country')
-    const currentYear = new Date().getFullYear()
-    const response = await axios.get(
+    const currentYear = config.get<string>('holiday.year')
+    const response:any = await axios.get(
       `https://holidayapi.com/v1/holidays?pretty&key=${apiKey}&country=${country}&year=${currentYear}`
     )
-      return response;
+   
+    return response.holiday;
   } catch (error:any) {
     logger.info(`Error in Holiday Api : ${error.message}`)
   }

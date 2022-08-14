@@ -18,7 +18,7 @@ app.use(
 app.use(express.json())
 
 app.listen(port, async () => {
-    logger.info(`App is running at http://${host}:${port}`);
-    await connect()
+  logger.info(`App is running at http://${host}:${port}`);
+  await connect()
   routes(app);
 })

@@ -8,6 +8,7 @@ import {
     getWeeklyDelivery,
     findAndUpdateDelivery
 } from '../service/delivery.service'
+import config from 'config'
 
 export const createDeliveryHandler = async (
     req: Request<{}, {}, CreateDeliveryInput['body']>,
@@ -16,6 +17,9 @@ export const createDeliveryHandler = async (
     try {
         const body = req.body
         const delivery: object = await createDelivery({ ...body })
+        if (!delivery) {
+            return res.status(403).send('timeslotId on this date there is a holiday, it is not possible to create a delivery')
+         }
         return res.send(delivery)
     } catch (error: any) {
         res.status(500).send({ err: error.message })
@@ -47,12 +51,12 @@ export const dailyDeliveryHandler = async (req: Request, res: Response) => {
 
 export const weeklyDeliveryHandler = async (req: Request, res: Response) => {
     try {
-        const dailyDelivery: any = await getDailyDelivery();
-        const idDailyDelivery: any = dailyDelivery.map((ele: any) => ele._id);
-        const getAllDailyDelivery: any = await findDelivery({
-            timeslotId: { $in: idDailyDelivery }
+        const weeklyDelivery: any = await getWeeklyDelivery();
+        const idweeklyDelivery: any = weeklyDelivery.map((ele: any) => ele._id);
+        const getAllWeeklyDelivery: any = await findDelivery({
+            timeslotId: { $in: idweeklyDelivery }
         });
-        return res.send(getAllDailyDelivery)
+        return res.send(getAllWeeklyDelivery);
     } catch (error: any) {
         res.status(500).send({ err: error.message })
     }
