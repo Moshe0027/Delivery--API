@@ -1,4 +1,4 @@
-import { object, number, string, TypeOf } from 'zod';
+import { object, string, TypeOf } from 'zod';
 
 const payload = {
     body: object({
@@ -9,10 +9,10 @@ const payload = {
 }
 
 
-export const createTimeslotsSchema = object({
+export const getTimeslotsSchema = object({
     ...payload
 })
 
 
-export type CreateTimeslotsInput = TypeOf<typeof createTimeslotsSchema>
+export type GetTimeslotsInput = TypeOf<typeof getTimeslotsSchema>
 

@@ -8,13 +8,12 @@ const payload = {
         timeslotId: string({
             required_error: 'timeslotId is required'
         }),
-        
     })
 }
 const params = {
     params: object({
-        deliveryId: string({
-            required_error: 'deliveryId is required'
+        delivery_id: string({
+            required_error: 'delivery_id is required'
         })
     })
 }

@@ -8,7 +8,7 @@ export const createAddressHandler = async (
 ) => {
     try {
         const body = req.body;
-        const address = await createAddress({ ...body });
+        const address:object = await createAddress({ ...body });
         return res.send(address);
     } catch (error: any) {
         res.status(500).send({ err: error.message })

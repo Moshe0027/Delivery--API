@@ -11,7 +11,7 @@ const holiday = async () => {
       `https://holidayapi.com/v1/holidays?pretty&key=${apiKey}&country=${country}&year=${currentYear}`
     )
       return response;
-  } catch (error) {
+  } catch (error:any) {
     logger.info(`Error in Holiday Api : ${error.message}`)
   }
 }

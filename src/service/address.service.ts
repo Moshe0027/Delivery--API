@@ -1,5 +1,5 @@
 
-import { DocumentDefinition, FilterQuery, QueryOptions, UpdateQuery } from "mongoose";
+import {FilterQuery, QueryOptions, UpdateQuery } from "mongoose";
 import AddressModel, { AddressDocument } from "../models/address.model";
 import geocodig from "../utils/geocodig";
 export const createAddress = async ({ searchTerm }: any) => {
