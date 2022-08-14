@@ -11,22 +11,24 @@
 
 ## POST resolves a single line address into a structured one
     const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
 
-    const formdata = new FormData();
-    formdata.append("searchTerm", " {SINGLE LINE ADDRESS}");
+myHeaders.append("Content-Type", "application/json");
 
-    const requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: formdata,
-    redirect: 'follow'
-    };
+const raw = JSON.stringify({
+  "searchTerm": {SINGLE LINE ADDRESS} 
+});
 
-    fetch("http://localhost:1337/resolve-address ", requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
+const requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("http://localhost:1337/resolve-address", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
 
 ## POST retrieve all available timeslots 
     const myHeaders = new Headers();
