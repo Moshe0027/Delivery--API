@@ -4,4 +4,5 @@ export default {
     dbUri: '',
     holiday: '',
     geolocation: ''
+    
 }
