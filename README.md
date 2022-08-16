@@ -10,25 +10,23 @@
 
 
 ## POST resolves a single line address into a structured one
-    const myHeaders = new Headers();
+        const myHeaders = new Headers();
 
-myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Content-Type", "application/json");
 
-const raw = JSON.stringify({
-  "searchTerm": {SINGLE LINE ADDRESS} 
-});
+        const raw = JSON.stringify({ "searchTerm": {SINGLE LINE ADDRESS} });
 
-const requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  body: raw,
-  redirect: 'follow'
-};
+        const requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
 
-fetch("http://localhost:1337/resolve-address", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+        fetch("http://localhost:1337/resolve-address", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
 
 ## POST retrieve all available timeslots 
     const myHeaders = new Headers();
@@ -50,24 +48,26 @@ fetch("http://localhost:1337/resolve-address", requestOptions)
     .catch(error => console.log('error', error));
 
 ## POST  book a delivery  
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
 
-    const formdata = new FormData();
-    formdata.append("user", " {USER}");
-    formdata.append("timeslotId", "{TIMESLOT_ID}  ");
+        const raw = JSON.stringify({
+        "user": "{User}",
+        "timeslotId": "{timeslotId}"
+        });
 
-    const requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: formdata,
-    redirect: 'follow'
-    };
+        const requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
 
-    fetch("http://localhost:1337/deliveries", requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
+        fetch("http://localhost:1337/deliveries", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+
 ## POST mark a delivery as completed 
     const myHeaders = new Headers();
 

@@ -8,7 +8,6 @@ import {
     getWeeklyDelivery,
     findAndUpdateDelivery
 } from '../service/delivery.service'
-import config from 'config'
 
 export const createDeliveryHandler = async (
     req: Request<{}, {}, CreateDeliveryInput['body']>,
@@ -16,7 +15,7 @@ export const createDeliveryHandler = async (
 ) => {
     try {
         const body = req.body
-        const delivery: object = await createDelivery({ ...body })
+        const delivery: any = await createDelivery({ ...body })
         if (!delivery) {
             return res.status(403).send('timeslotId on this date there is a holiday, it is not possible to create a delivery')
          }

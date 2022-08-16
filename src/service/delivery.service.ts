@@ -12,13 +12,16 @@ export const createDelivery = async (input: DocumentDefinition<DeliveryDocument>
         const date = String(dayjs(holiday.date, 'YYYY-DD-MM').format('DD/MM/YYYY'));
         datesHolidayMap.set(date, true);
     })
-    courierApi.find((date:any) => {
+    const ifExistsHoliday:any = courierApi.find((date:any) => {
         if (date._id === input.timeslotId ) {
             if (datesHolidayMap.get(date.stat_time) || datesHolidayMap.get(date.end_time)) { 
-                return false;
+                return true;
             }
         }
     })
+    if (ifExistsHoliday) { 
+        return false;
+    };
     return DeliveryModel.create(input);
 }
 
@@ -48,14 +51,15 @@ export const getDailyDelivery = async () => {
 }
 
 export const getWeeklyDelivery = async () => {
-    const todayDate = dayjs().valueOf();
-    const lastWeekDays = dayjs().subtract(7, 'days').valueOf();
+    const todayDate = dayjs();
+    const week = 1;
     const weeklyDelivery: any = [];
     courierApi.forEach((element): any => {
-        const startTime = Number(dayjs(element.stat_time).format('DD/MM/YYYY').valueOf());
-        if (todayDate <= startTime && lastWeekDays <= startTime) {
+        const startTime = dayjs(element.stat_time, 'DD/MM/YYYY');
+        const endTime = dayjs(element.end_time, 'DD/MM/YYYY');
+        if (startTime.diff(todayDate,'week') >= week || endTime.diff(todayDate,'week') >= week) {
             weeklyDelivery.push(element);
-        }
+        } 
     });
     return weeklyDelivery
 }
