@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Moshe0027/Delivery-API.git"
+    "url": "git+https://github.com/Moshe0027/Delivery--API.git"
   },
   "author": "Moshe Falach",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Moshe0027/Delivery-API/issues"
+    "url": "https://github.com/Moshe0027/Delivery--API/issues"
   },
-  "homepage": "https://github.com/Moshe0027/Delivery-API#readme",
+  "homepage": "https://github.com/Moshe0027/Delivery--API#readme",
   "devDependencies": {
     "@types/body-parser": "^1.19.2",
     "@types/config": "3.3.0",
